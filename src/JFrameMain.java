@@ -1,4 +1,5 @@
 
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -16,8 +17,11 @@ public class JFrameMain extends javax.swing.JFrame
     /**
      * Creates new form JFrameMain
      */
+    Quadratic qd;
+
     public JFrameMain()
     {
+        qd = new Quadratic();
         initComponents();
     }
 
@@ -252,29 +256,31 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
 
-        double a, b, c, dis, check;
-        a = Double.parseDouble(jTextFieldA.getText());
-        b = Double.parseDouble(jTextFieldB.getText());
-        c = Double.parseDouble(jTextFieldC.getText());
-        dis = (Math.pow(b, 2) - (4 * a * c));
+        DecimalFormat df = new DecimalFormat("0.000");
 
-        double Positive = (-b + (Math.sqrt(Math.pow(b, 2) - (4 * a * c)))) / (2.0 * a);
-        double Negative = (-b - (Math.sqrt(Math.pow(b, 2) - (4 * a * c)))) / (2.0 * a);
 
-        if (dis < 0)
+        //double a, b, c, dis, check;
+        qd.setA(Double.parseDouble(jTextFieldA.getText()));
+        qd.setB(Double.parseDouble(jTextFieldB.getText()));
+        qd.setC(Double.parseDouble(jTextFieldC.getText()));
+        
+        
+        double Positive = qd.roots(true);
+        double Negative = qd.roots(false);
+
+        int d = qd.checkDiscriminate();
+        if (d <= 0)
         {
-            //check = 0;
-            //check = (-1 * b + Math.sqrt(dis)) / (2 * a);
-
             jTextFieldResultOne.setText("Imaginary #");
             jTextFieldResultTwo.setText("Imaginary #");
         } else
         {
-            jTextFieldResultOne.setText("" + Positive);
-            jTextFieldResultTwo.setText("" + Negative);
+            jTextFieldResultOne.setText(df.format(Positive));
+            jTextFieldResultTwo.setText(df.format(Negative));
         }
-        // TODO add your handling code here:  
-        // TODO add your handling code here:
+
+
+
     }//GEN-LAST:event_jButtonCalculateActionPerformed
 
     private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
@@ -291,9 +297,8 @@ public class JFrameMain extends javax.swing.JFrame
     private void jButtonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGraphActionPerformed
 
 
-        JFrame PopupFrame = new JFrame();
-        PopupFrame.setSize(500, 500);
-        PopupFrame.show();
+        JDialogGraph myGraph = new JDialogGraph(this, true);
+        myGraph.show();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGraphActionPerformed
