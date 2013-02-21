@@ -1,17 +1,4 @@
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-import com.sun.corba.se.impl.orbutil.graph.Node;
-import com.sun.corba.se.impl.orbutil.graph.NodeData;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.QuadCurve2D;
-import java.awt.geom.Rectangle2D;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,7 +6,6 @@ import javax.swing.JOptionPane;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author glindor
@@ -230,34 +216,33 @@ public class JFrameMain extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAActionPerformed
-        
-        char [] input = jTextFieldA.getText().trim().toCharArray();
-        for( char c: input)
+
+        //Check input for digits only
+        char[] input = jTextFieldA.getText().trim().toCharArray();
+        for (char c : input)
         {
-            if( !Character.isDigit(c))
+            if (!Character.isDigit(c))
             {
-               jTextFieldA.setText(null);
-            }
-            else
+                jTextFieldA.setText(null);
+            } else
             {
                 jTextFieldA.transferFocus();
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAActionPerformed
 
     private void jTextFieldBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBActionPerformed
 
-        
-        char [] input = jTextFieldB.getText().trim().toCharArray();
-        for( char c: input)
+        //Check input for digits only
+        char[] input = jTextFieldB.getText().trim().toCharArray();
+        for (char c : input)
         {
-            if( !Character.isDigit(c))
+            if (!Character.isDigit(c))
             {
-               jTextFieldB.setText(null);
-            }
-            else
+                jTextFieldB.setText(null);
+            } else
             {
                 jTextFieldB.transferFocus();
             }
@@ -267,30 +252,28 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
 
+        double a, b, c, dis, check;
+        a = Double.parseDouble(jTextFieldA.getText());
+        b = Double.parseDouble(jTextFieldB.getText());
+        c = Double.parseDouble(jTextFieldC.getText());
+        dis = (Math.pow(b, 2) - (4 * a * c));
+
+        double Positive = (-b + (Math.sqrt(Math.pow(b, 2) - (4 * a * c)))) / (2.0 * a);
+        double Negative = (-b - (Math.sqrt(Math.pow(b, 2) - (4 * a * c)))) / (2.0 * a);
+
+        if (dis < 0)
         {
-             double a,b,c,dis,check;
-       a = Double.parseDouble(jTextFieldA.getText());
-       b = Double.parseDouble(jTextFieldB.getText());
-       c = Double.parseDouble(jTextFieldC.getText());
-       dis = ( Math.pow(b, 2) - (4 * a * c)) ;
-       
-         double Positive = (-b + ( Math.sqrt( Math.pow(b, 2) - (4 * a * c)) ) ) / (2.0 * a);
-         double Negative = (-b - ( Math.sqrt( Math.pow(b, 2) - (4 * a * c)) ) ) / (2.0 * a);
-         
-if (dis < 0)
-{
-    check = 0;
-    check = (-1*b+Math.sqrt(dis))/(2*a);
-    
-    jTextFieldResultOne.setText("Imaginary #");
-    jTextFieldResultTwo.setText("Imaginary #");
-}
-else {
-            jTextFieldResultOne.setText(""+Positive);
-            jTextFieldResultTwo.setText(""+Negative);
+            //check = 0;
+            //check = (-1 * b + Math.sqrt(dis)) / (2 * a);
+
+            jTextFieldResultOne.setText("Imaginary #");
+            jTextFieldResultTwo.setText("Imaginary #");
+        } else
+        {
+            jTextFieldResultOne.setText("" + Positive);
+            jTextFieldResultTwo.setText("" + Negative);
         }
-                 // TODO add your handling code here:
-    }  
+        // TODO add your handling code here:  
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCalculateActionPerformed
 
@@ -298,85 +281,32 @@ else {
 
         int answer = JOptionPane.showConfirmDialog(null, "Are You Sure?");
         if (answer == JOptionPane.YES_OPTION)
-        System.exit(0);   
-        
+        {
+            System.exit(0);
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
     private void jButtonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGraphActionPerformed
-        {        
-        
-        JFrame PopupFrame  = new JFrame();
-        PopupFrame.setSize(500,500); 
+
+
+        JFrame PopupFrame = new JFrame();
+        PopupFrame.setSize(500, 500);
         PopupFrame.show();
-        
-        Graphics g = getGraphics();
-        Graphics2D g2 = (Graphics2D) g;
-        QuadCurve2D q = new QuadCurve2D.Float();
-// draw QuadCurve2D.Float with set coordinates
-        
-        
-     //   Canvas1 canvas;
-        
-        Container container = getContentPane();
-    //    canvas = new Canvas1();
-    //    container.add(canvas);
-        
-        Vector vector;
-  QuadCurve2D quadCurve = null;
-  Rectangle2D rec = null;
 
-  setBackground(Color.white);
-  setSize(500, 250);
-
-  vector = new Vector();
-  vector.addElement(new QuadCurve2D.Float(30, 30, 90, 
-   170, 130,30));
-  vector.addElement(new QuadCurve2D.Float(130, 110, 170, 
-   50, 210,190));
-  vector.addElement(new QuadCurve2D.Float(250, 30, 230, 
-   70, 270,130));
-  vector.addElement(new QuadCurve2D.Float(260, 170, 270,
-    150,290, 190));
- vector.addElement(new QuadCurve2D.Float(280, 180, 280, 
-  160,300, 190));
-  vector.addElement(new QuadCurve2D.Float(310, 190, 350, 
-  50, 390,130));
-  vector.addElement(new QuadCurve2D.Float(30, 190, 90, 
-  180, 130,200));
-  vector.addElement(new QuadCurve2D.Float(140, 40, 100, 
-  190, 140,200));
-
-  
-  Graphics2D g3 = (Graphics2D) g;
- for (int k = 0; k < vector.size(); k++) {
-  g3.draw((QuadCurve2D) vector.elementAt(k));
-
-        
-
-  
-  
-    //    q.setCurve(5, 6, 8, 9, 4, 3);
-  //      g2.draw(q);
-        
- }
-        
-        }
-        
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGraphActionPerformed
 
     private void jTextFieldCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCActionPerformed
-     
-        char [] input = jTextFieldC.getText().trim().toCharArray();
-        for( char c: input)
+
+        char[] input = jTextFieldC.getText().trim().toCharArray();
+        for (char c : input)
         {
-            if( !Character.isDigit(c))
+            if (!Character.isDigit(c))
             {
-               jTextFieldC.setText(null);
-            }
-            else
+                jTextFieldC.setText(null);
+            } else
             {
                 jButtonCalculate.doClick();
                 //jTextFieldB.transferFocus();
@@ -385,13 +315,13 @@ else {
     }//GEN-LAST:event_jTextFieldCActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        jTextFieldA.setText(" ");
-        jTextFieldB.setText(" ");
-        jTextFieldC.setText(" ");
-        jTextFieldResultOne.setText(" ");
-        jTextFieldResultTwo.setText(" ");
-        
+
+        jTextFieldA.setText(null);
+        jTextFieldB.setText(null);
+        jTextFieldC.setText(null);
+        jTextFieldResultOne.setText(null);
+        jTextFieldResultTwo.setText(null);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
