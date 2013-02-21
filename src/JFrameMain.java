@@ -230,15 +230,38 @@ public class JFrameMain extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAActionPerformed
-
-        jTextFieldA.transferFocus();
+        
+        char [] input = jTextFieldA.getText().trim().toCharArray();
+        for( char c: input)
+        {
+            if( !Character.isDigit(c))
+            {
+               jTextFieldA.setText(null);
+            }
+            else
+            {
+                jTextFieldA.transferFocus();
+            }
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAActionPerformed
 
     private void jTextFieldBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBActionPerformed
 
         
-        jTextFieldB.transferFocus();
+        char [] input = jTextFieldB.getText().trim().toCharArray();
+        for( char c: input)
+        {
+            if( !Character.isDigit(c))
+            {
+               jTextFieldB.setText(null);
+            }
+            else
+            {
+                jTextFieldB.transferFocus();
+            }
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBActionPerformed
 
@@ -345,8 +368,20 @@ else {
     }//GEN-LAST:event_jButtonGraphActionPerformed
 
     private void jTextFieldCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCActionPerformed
-     //   requestFocus(); //jTextFieldResultTwo
-        // TODO add your handling code here:
+     
+        char [] input = jTextFieldC.getText().trim().toCharArray();
+        for( char c: input)
+        {
+            if( !Character.isDigit(c))
+            {
+               jTextFieldC.setText(null);
+            }
+            else
+            {
+                jButtonCalculate.doClick();
+                //jTextFieldB.transferFocus();
+            }
+        }
     }//GEN-LAST:event_jTextFieldCActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
