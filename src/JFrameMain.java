@@ -1,6 +1,5 @@
 
 import java.text.DecimalFormat;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
