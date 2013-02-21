@@ -18,6 +18,8 @@ public class JFrameMain extends javax.swing.JFrame
      * Creates new form JFrameMain
      */
     Quadratic qd;
+    //Determines if we can graph or not
+    boolean canGraph = false;
 
     public JFrameMain()
     {
@@ -277,6 +279,8 @@ public class JFrameMain extends javax.swing.JFrame
         {
             jTextFieldResultOne.setText(df.format(Positive));
             jTextFieldResultTwo.setText(df.format(Negative));
+            //We can graph now
+            canGraph = true;
         }
 
 
@@ -297,8 +301,15 @@ public class JFrameMain extends javax.swing.JFrame
     private void jButtonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGraphActionPerformed
 
 
-        JDialogGraph myGraph = new JDialogGraph(this, true);
-        myGraph.show();
+        if( canGraph )
+        {
+            JDialogGraph myGraph = new JDialogGraph(this, true);
+            myGraph.show();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "We cannot graph this solution!");
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGraphActionPerformed
