@@ -16,6 +16,7 @@ public class JFrameMain extends javax.swing.JFrame
     /**
      * Creates new form JFrameMain
      */
+    
     Quadratic qd;
     //Determines if we can graph or not
     boolean canGraph = false;
@@ -24,7 +25,7 @@ public class JFrameMain extends javax.swing.JFrame
     {
         qd = new Quadratic();
         initComponents();
-        jTextFieldA.setFocusCycleRoot(true);
+        
     }
 
     /**
@@ -66,13 +67,6 @@ public class JFrameMain extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 jTextFieldAActionPerformed(evt);
-            }
-        });
-        jTextFieldA.addFocusListener(new java.awt.event.FocusAdapter()
-        {
-            public void focusLost(java.awt.event.FocusEvent evt)
-            {
-                jTextFieldAFocusLost(evt);
             }
         });
 
@@ -230,25 +224,28 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jTextFieldAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAActionPerformed
 
-        jTextFieldA.transferFocus();
-        // TODO add your handling code here:
+        if( jTextFieldA.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
+        {
+            jTextFieldA.transferFocus();
+        }
+        else
+        {
+            jTextFieldA.setText(null);
+            canGraph = false;
+        }
     }//GEN-LAST:event_jTextFieldAActionPerformed
 
     private void jTextFieldBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBActionPerformed
 
-        //Check input for digits only
-        char[] input = jTextFieldB.getText().trim().toCharArray();
-        for (char c : input)
+        if( jTextFieldA.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
         {
-            if (!Character.isDigit(c))
-            {
-                jTextFieldB.setText(null);
-            } else
-            {
-                jTextFieldB.transferFocus();
-            }
+            jTextFieldA.transferFocus();
         }
-        // TODO add your handling code here:
+        else
+        {
+            jTextFieldA.setText(null);
+            canGraph = false;
+        }       
     }//GEN-LAST:event_jTextFieldBActionPerformed
 
     private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
@@ -312,18 +309,15 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jTextFieldCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCActionPerformed
 
-        char[] input = jTextFieldC.getText().trim().toCharArray();
-        for (char c : input)
+        if( jTextFieldA.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
         {
-            if (!Character.isDigit(c))
-            {
-                jTextFieldC.setText(null);
-            } else
-            {
-                jButtonCalculate.doClick();
-                //jTextFieldB.transferFocus();
-            }
+            jTextFieldA.transferFocus();
         }
+        else
+        {
+            jTextFieldA.setText(null);
+            canGraph = false;
+        }   
     }//GEN-LAST:event_jTextFieldCActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -333,27 +327,8 @@ public class JFrameMain extends javax.swing.JFrame
         jTextFieldC.setText(null);
         jTextFieldResultOne.setText(null);
         jTextFieldResultTwo.setText(null);
-
-        // TODO add your handling code here:
+        canGraph=false;
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextFieldAFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldAFocusLost
-    {//GEN-HEADEREND:event_jTextFieldAFocusLost
-        // TODO add your handling code here:
-        char[] input = jTextFieldA.getText().trim().toCharArray();
-        for (char c : input)
-        {
-            if (!Character.isDigit(c))
-            {
-                jTextFieldA.setText(null);
-                
-            } else
-            {
-                jTextFieldA.transferFocus();
-            }
-        }
-
-    }//GEN-LAST:event_jTextFieldAFocusLost
 
     /**
      * @param args the command line arguments

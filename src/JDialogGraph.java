@@ -21,19 +21,19 @@ public class JDialogGraph extends javax.swing.JDialog
     class JGraphComponent extends JPanel
     {
         
-        private int a,b,c;
+        private double a,b,c;
         
         public JGraphComponent()
         {
-            a = (int)JDialogGraph.this.ourQuad.getA();
-            b = (int)JDialogGraph.this.ourQuad.getB();
-            c = (int)JDialogGraph.this.ourQuad.getC();
+            a = JDialogGraph.this.ourQuad.getA();
+            b = JDialogGraph.this.ourQuad.getB();
+            c = JDialogGraph.this.ourQuad.getC();
         }
          
-        public int getY(int x)
+        public double getY(int x)
         {
             
-            return ((a)*x * x + (b * x) + c);
+            return (( a )* x * x + (b * x) + c);
         }
 
         @Override
@@ -63,7 +63,7 @@ public class JDialogGraph extends javax.swing.JDialog
             for (int x = (int)symmetry.getX()-this.getHeight()/2; x < (int)symmetry.getX()+this.getHeight()/2; ++x)
             {
                 System.out.println("x = " + x);
-                g.drawLine(x + xshift, -getY(x) + yshift, x + 1 + xshift, -getY(x + 1) + yshift);
+                g.drawLine(x + xshift, (int)-getY(x) + yshift, x + 1 + xshift, (int)-getY(x + 1) + yshift);
                 //System.out.printf("%d %d %d %d\n", x, getY(x), x + 1, getY(x + 1));
             }
             
@@ -72,7 +72,7 @@ public class JDialogGraph extends javax.swing.JDialog
     }
 
     /**
-     * Creates new form JDialogGraph
+     * Creates new form JDialogGraph, gaining Quadratic object.
      */
     public JDialogGraph(java.awt.Frame parent, boolean modal, Quadratic q)
     {
