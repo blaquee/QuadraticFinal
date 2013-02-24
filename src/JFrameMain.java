@@ -299,11 +299,11 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jButtonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGraphActionPerformed
 
-
+        //Make sure we can graph before we blow up our computers.
         if( canGraph )
         {
-            JDialogGraph myGraph = new JDialogGraph(this, true);
-            myGraph.show();
+            JDialogGraph myGraphDialog = new JDialogGraph(this, true);
+            myGraphDialog.show();
         }
         else
         {

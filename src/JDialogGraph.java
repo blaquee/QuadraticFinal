@@ -16,30 +16,20 @@ public class JDialogGraph extends javax.swing.JDialog
     /**
      * Creates new form JDialogGraph
      */
+    private JPanelGraph myGraph;
     public JDialogGraph(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
-        repaint();
-    }
-    
-    public int getY(int x)
-    {
-        return ( x*x + (6*x) + 5 );
-    }
-    public void paintComponent(Graphics g)
-    {
-        
-        for( int x = -5; x <= -1; ++x )
-        {
-            g.drawLine(x, getY(x), x+1, getY(x+1) );
-        }
+        myGraph = new JPanelGraph();
+        add(myGraph);
     }
 
-    JDialogGraph()
+
+    /*JDialogGraph()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+        //throw new UnsupportedOperationException("Not yet implemented");
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
