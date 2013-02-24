@@ -9,6 +9,13 @@ public class Quadratic
     public Quadratic()
     {
     }
+    
+    public Quadratic(double a1, double b1, double c1)
+    {
+        a = a1;
+        b = b1;
+        c = c1;
+    }
 
     public double getA()
     {

@@ -1,3 +1,6 @@
+
+import java.awt.Graphics;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -17,6 +20,20 @@ public class JDialogGraph extends javax.swing.JDialog
     {
         super(parent, modal);
         initComponents();
+        repaint();
+    }
+    
+    public int getY(int x)
+    {
+        return ( x*x + (6*x) + 5 );
+    }
+    public void paintComponent(Graphics g)
+    {
+        
+        for( int x = -5; x <= -1; ++x )
+        {
+            g.drawLine(x, getY(x), x+1, getY(x+1) );
+        }
     }
 
     JDialogGraph()
@@ -34,36 +51,21 @@ public class JDialogGraph extends javax.swing.JDialog
     private void initComponents()
     {
 
-        jPanel1 = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Graph");
         setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(100, 100));
         setModal(true);
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 394, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 300, Short.MAX_VALUE)
-        );
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -123,6 +125,5 @@ public class JDialogGraph extends javax.swing.JDialog
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
