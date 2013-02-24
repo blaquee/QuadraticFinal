@@ -24,6 +24,7 @@ public class JFrameMain extends javax.swing.JFrame
     {
         qd = new Quadratic();
         initComponents();
+        jTextFieldA.setFocusCycleRoot(true);
     }
 
     /**
@@ -65,6 +66,13 @@ public class JFrameMain extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 jTextFieldAActionPerformed(evt);
+            }
+        });
+        jTextFieldA.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                jTextFieldAFocusLost(evt);
             }
         });
 
@@ -222,19 +230,7 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jTextFieldAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAActionPerformed
 
-        //Check input for digits only
-        char[] input = jTextFieldA.getText().trim().toCharArray();
-        for (char c : input)
-        {
-            if (!Character.isDigit(c))
-            {
-                jTextFieldA.setText(null);
-            } else
-            {
-                jTextFieldA.transferFocus();
-            }
-        }
-
+        jTextFieldA.transferFocus();
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAActionPerformed
 
@@ -340,6 +336,24 @@ public class JFrameMain extends javax.swing.JFrame
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldAFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldAFocusLost
+    {//GEN-HEADEREND:event_jTextFieldAFocusLost
+        // TODO add your handling code here:
+        char[] input = jTextFieldA.getText().trim().toCharArray();
+        for (char c : input)
+        {
+            if (!Character.isDigit(c))
+            {
+                jTextFieldA.setText(null);
+                
+            } else
+            {
+                jTextFieldA.transferFocus();
+            }
+        }
+
+    }//GEN-LAST:event_jTextFieldAFocusLost
 
     /**
      * @param args the command line arguments

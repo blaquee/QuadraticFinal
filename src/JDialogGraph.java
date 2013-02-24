@@ -48,7 +48,7 @@ public class JDialogGraph extends javax.swing.JDialog
             //y-axis
             g.drawLine(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight());
             
-            //This is our point of symmetry, we'll graph -10 and +10 from this point
+            //This is our point of symmetry
             Point symmetry = JDialogGraph.this.ourQuad.calcVertex();
             
             
@@ -59,7 +59,7 @@ public class JDialogGraph extends javax.swing.JDialog
             //Set the graphs color to red
             g.setColor(Color.red);
             
-            //Graph our equation with necessary calculations
+            //Graph our equation with necessary calculations, we graph along the whole y-axis. why not.
             for (int x = (int)symmetry.getX()-this.getHeight()/2; x < (int)symmetry.getX()+this.getHeight()/2; ++x)
             {
                 System.out.println("x = " + x);
