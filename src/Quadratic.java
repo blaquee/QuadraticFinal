@@ -49,7 +49,12 @@ public class Quadratic
     }
 
     
-    public Point calcVertex(double a, double b, double c)
+    
+    /**
+     *
+     * @return returns the Point of symmetry
+     */
+    public Point calcVertex()
     {
         //get x value formula
         x = (-b)/ (2.0*a);

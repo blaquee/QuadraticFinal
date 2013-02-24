@@ -302,7 +302,8 @@ public class JFrameMain extends javax.swing.JFrame
         //Make sure we can graph before we blow up our computers.
         if( canGraph )
         {
-            JDialogGraph myGraphDialog = new JDialogGraph(this, true);
+            //Pass the Quadratic class to the Dialog for graphing!
+            JDialogGraph myGraphDialog = new JDialogGraph(this, false, qd);
             myGraphDialog.show();
         }
         else

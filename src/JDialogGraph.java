@@ -1,11 +1,11 @@
 
-import java.awt.Graphics;
+import java.awt.*;
+import javax.swing.*;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author glindor
@@ -13,24 +13,75 @@ import java.awt.Graphics;
 public class JDialogGraph extends javax.swing.JDialog
 {
 
+    //Our object with essential Quadratic numbers for calculations
+    private Quadratic ourQuad;
+    
+    
+    //This is our Graph Component, we draw the graph here.
+    class JGraphComponent extends JPanel
+    {
+        
+        private int a,b,c;
+        
+        public JGraphComponent()
+        {
+            a = (int)JDialogGraph.this.ourQuad.getA();
+            b = (int)JDialogGraph.this.ourQuad.getB();
+            c = (int)JDialogGraph.this.ourQuad.getC();
+        }
+         
+        public int getY(int x)
+        {
+            
+            return ((a)*x * x + (b * x) + c);
+        }
+
+        @Override
+        public void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+            
+            //Draw the x and y axis
+            g.setColor(Color.black);
+            //x-axis
+            g.drawLine(0, this.getHeight()/2, this.getWidth(), this.getHeight()/2);
+            //y-axis
+            g.drawLine(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight());
+            
+            //This is our point of symmetry, we'll graph -10 and +10 from this point
+            Point symmetry = JDialogGraph.this.ourQuad.calcVertex();
+            
+            
+            //Calculate the shift for our graph, we need to graph it according to the modified origin
+            int xshift = this.getWidth()/2;
+            int yshift = this.getHeight()/2;
+            
+            //Set the graphs color to red
+            g.setColor(Color.red);
+            
+            //Graph our equation with necessary calculations
+            for (int x = (int)symmetry.getX()-this.getHeight()/2; x < (int)symmetry.getX()+this.getHeight()/2; ++x)
+            {
+                System.out.println("x = " + x);
+                g.drawLine(x + xshift, -getY(x) + yshift, x + 1 + xshift, -getY(x + 1) + yshift);
+                //System.out.printf("%d %d %d %d\n", x, getY(x), x + 1, getY(x + 1));
+            }
+            
+            //System.out.println("Width = "+ this.getWidth() );
+        }
+    }
+
     /**
      * Creates new form JDialogGraph
      */
-    private JPanelGraph myGraph;
-    public JDialogGraph(java.awt.Frame parent, boolean modal)
+    public JDialogGraph(java.awt.Frame parent, boolean modal, Quadratic q)
     {
         super(parent, modal);
+        //Got our Quadratic class!
+        ourQuad = q;
         initComponents();
-        myGraph = new JPanelGraph();
-        add(myGraph);
+
     }
-
-
-    /*JDialogGraph()
-    {
-        //throw new UnsupportedOperationException("Not yet implemented");
-    }*/
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,22 +92,39 @@ public class JDialogGraph extends javax.swing.JDialog
     private void initComponents()
     {
 
+        JGraphComponent = new JGraphComponent();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Graph");
-        setMaximumSize(new java.awt.Dimension(400, 400));
-        setMinimumSize(new java.awt.Dimension(100, 100));
+        setMaximumSize(new java.awt.Dimension(800, 640));
+        setMinimumSize(new java.awt.Dimension(200, 200));
         setModal(true);
+
+        org.jdesktop.layout.GroupLayout JGraphComponentLayout = new org.jdesktop.layout.GroupLayout(JGraphComponent);
+        JGraphComponent.setLayout(JGraphComponentLayout);
+        JGraphComponentLayout.setHorizontalGroup(
+            JGraphComponentLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 400, Short.MAX_VALUE)
+        );
+        JGraphComponentLayout.setVerticalGroup(
+            JGraphComponentLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 300, Short.MAX_VALUE)
+        );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, JGraphComponent, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 300, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, JGraphComponent, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        JGraphComponent.getAccessibleContext().setAccessibleParent(null);
+
+        getAccessibleContext().setAccessibleParent(this);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -64,14 +132,14 @@ public class JDialogGraph extends javax.swing.JDialog
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
+/*    public static void main(String args[])
     {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
+    /*    try
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
             {
@@ -97,7 +165,7 @@ public class JDialogGraph extends javax.swing.JDialog
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable()
+       /* java.awt.EventQueue.invokeLater(new Runnable()
         {
             public void run()
             {
@@ -113,7 +181,8 @@ public class JDialogGraph extends javax.swing.JDialog
                 dialog.setVisible(true);
             }
         });
-    }
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JGraphComponent;
     // End of variables declaration//GEN-END:variables
 }
