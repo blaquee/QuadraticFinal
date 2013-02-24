@@ -253,6 +253,7 @@ public class JFrameMain extends javax.swing.JFrame
         DecimalFormat df = new DecimalFormat("0.000");
 
 
+        
         //double a, b, c, dis, check;
         qd.setA(Double.parseDouble(jTextFieldA.getText()));
         qd.setB(Double.parseDouble(jTextFieldB.getText()));
@@ -301,7 +302,8 @@ public class JFrameMain extends javax.swing.JFrame
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "We cannot graph this solution!");
+            JOptionPane.showMessageDialog(rootPane, "We cannot graph this solution!",
+                    "Input Error",JOptionPane.ERROR_MESSAGE);
         }
 
         // TODO add your handling code here:
