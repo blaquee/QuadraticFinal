@@ -237,13 +237,13 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jTextFieldBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBActionPerformed
 
-        if( jTextFieldA.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
+        if( jTextFieldB.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
         {
-            jTextFieldA.transferFocus();
+            jTextFieldB.transferFocus();
         }
         else
         {
-            jTextFieldA.setText(null);
+            jTextFieldB.setText(null);
             canGraph = false;
         }       
     }//GEN-LAST:event_jTextFieldBActionPerformed
@@ -311,13 +311,13 @@ public class JFrameMain extends javax.swing.JFrame
 
     private void jTextFieldCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCActionPerformed
 
-        if( jTextFieldA.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
+        if( jTextFieldC.getText().matches("^\\-?[0-9]+(\\.[0-9]+)?$") )
         {
-            jTextFieldA.transferFocus();
+            jButtonGraph.doClick();
         }
         else
         {
-            jTextFieldA.setText(null);
+            jTextFieldC.setText(null);
             canGraph = false;
         }   
     }//GEN-LAST:event_jTextFieldCActionPerformed
